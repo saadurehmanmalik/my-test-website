@@ -13,13 +13,13 @@ export default function Rights() {
     <section className="section rights align-left" id="rights">
       <div className="rights-header">
         <AnimatedHeading text="Your Rights in Simple Terms" />
-        <FadeUp as="h3" className="kicker" delay={0.2}>
+        <FadeUp as="h3" className="kicker" delay={0.4}>
           Digital Rights guidance should not depend on how comfortable you are with legal and technical English.
         </FadeUp>
       </div>
       <div className="rights-grid">
         {items.map(([title, text], i) => (
-          <FadeUp key={title} className="rights-item" delay={(i % 2) * 0.1}>
+          <FadeUp key={title} className="rights-item" delay={(i % 2) * 0.2}>
             <h4>{title}</h4>
             <p>{text}</p>
           </FadeUp>

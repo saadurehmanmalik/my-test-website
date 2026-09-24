@@ -11,7 +11,7 @@ export default function Guide() {
     <section className="section guide" id="guide">
       <div className="guide-header">
         <AnimatedHeading text="Find Your Next Steps" />
-        <FadeUp as="h3" className="kicker" delay={0.2}>
+        <FadeUp as="h3" className="kicker" delay={0.4}>
           Select the situation closest to yours for a clear, actionable checklist.
         </FadeUp>
       </div>

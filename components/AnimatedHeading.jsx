@@ -1,32 +1,39 @@
 import { Fragment } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
+import { useSpringProgress } from './useSpringProgress';
 
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.06 } },
-};
-const word = {
-  hidden: { opacity: 0, y: 14 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-};
+function Word({ children, progress, index, total }) {
+  const s = (index / total) * 0.45;
+  const e = s + 0.55;
+  const y = useTransform(progress, [s, e], ['110%', '0%']);
+  const opacity = useTransform(progress, [s, e], [0, 1]);
 
-export default function AnimatedHeading({ text, as = 'h2', className }) {
-  const Tag = motion[as];
   return (
-    <Tag
-      className={className}
-      variants={container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      aria-label={text}
+    <span
+      aria-hidden="true"
+      style={{
+        display: 'inline-block',
+        overflow: 'hidden',
+        verticalAlign: 'top',
+        padding: '0.1em 0',
+        margin: '-0.1em 0',
+      }}
     >
-      {text.split(' ').map((w, i, arr) => (
+      <motion.span style={{ display: 'inline-block', y, opacity }}>{children}</motion.span>
+    </span>
+  );
+}
+
+export default function AnimatedHeading({ text, as: Tag = 'h2', className }) {
+  const [ref, progress] = useSpringProgress(['start 1', 'start 0.6']);
+  const words = text.split(' ');
+
+  return (
+    <Tag ref={ref} className={className} aria-label={text}>
+      {words.map((w, i) => (
         <Fragment key={i}>
-          <motion.span variants={word} aria-hidden="true" style={{ display: 'inline-block' }}>
-            {w}
-          </motion.span>
-          {i < arr.length - 1 && ' '}
+          <Word progress={progress} index={i} total={words.length}>{w}</Word>
+          {i < words.length - 1 && ' '}
         </Fragment>
       ))}
     </Tag>

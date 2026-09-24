@@ -14,7 +14,7 @@ export default function Habits() {
         <AnimatedHeading text="Habits to Secure Your Online Presence" />
         <div className="habits-list">
           {habits.map(([title, text], i) => (
-            <FadeUp key={title} className="habit-item" delay={i * 0.08}>
+            <FadeUp key={title} className="habit-item" delay={i * 0.2}>
               <h4>{title}</h4>
               <p>{text}</p>
             </FadeUp>

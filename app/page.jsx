@@ -17,10 +17,8 @@ export default function Page() {
       <Nav />
       <Hero />
       <Guide />
-      <div className="stack-wrap">
-        <Rights />
-        <Habits />
-      </div>
+      <Rights />
+      <Habits />
       <Cta />
       <LegalQuote />
       <Footer />
