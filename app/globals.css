@@ -456,7 +456,3 @@
     .footer-inner{flex-direction:column; gap:28px;}
     .footer-right{text-align:left; max-width:none;}
   }
-
-  /* ---------- Font gate: nothing paints until the web fonts are loaded ---------- */
-  html.fonts-pending body > *{ opacity:0; }
-  html.fonts-ready body > *{ transition:opacity .5s ease; }
