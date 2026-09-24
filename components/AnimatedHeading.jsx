@@ -1,8 +1,9 @@
 import { Fragment } from 'react';
-import { motion, useTransform } from 'framer-motion';
+import { motion, useTransform, useReducedMotion } from 'framer-motion';
 import { useSpringProgress } from './useSpringProgress';
 
 function Word({ children, progress, index, total }) {
+  const reduce = useReducedMotion();
   const s = (index / total) * 0.45;
   const e = s + 0.55;
   const y = useTransform(progress, [s, e], ['110%', '0%']);
@@ -19,7 +20,7 @@ function Word({ children, progress, index, total }) {
         margin: '-0.1em 0',
       }}
     >
-      <motion.span style={{ display: 'inline-block', y, opacity }}>{children}</motion.span>
+      <motion.span style={{ display: 'inline-block', y: reduce ? 0 : y, opacity }}>{children}</motion.span>
     </span>
   );
 }
