@@ -133,8 +133,7 @@
   }
 
   /* ---------- Section 2.5: Interactive Situation Guide ---------- */
-  .section.guide{ padding-top:0; padding-bottom:64px; }
-  .guide-header{ max-width:720px; margin-bottom:28px; }
+  .guide-header{ max-width:720px; margin-bottom:56px; }
 
   .drp-container{
     display:grid;
